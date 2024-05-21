@@ -1,0 +1,17 @@
+spring:
+  cloud:
+    gateway:
+      mvc:
+        routes:
+        - id: batch-micro
+          uri: lb://batch-micro
+          predicates:
+            - Path=/api/catalogo/**
+          filters:
+            - StripPrefix=2
+        - id: tarifa-micro
+          uri: lb://tarifa-micro
+          predicates:
+            - Path=/api/tarifas/**
+          filters:
+            - StripPrefix=2
